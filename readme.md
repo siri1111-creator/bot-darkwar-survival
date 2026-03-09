@@ -5,7 +5,7 @@ This is a Python-based automation script that uses `pyautogui` to automatically 
 ## Features
 - **Auto-Attack Routine**: Automatically searches for zombies on the map, clicks to rally/attack, and sends troops.
 - **Energy Checking**: Monitors the energy bar to check if there is enough energy to launch an attack.
-- **Auto-Recovery**: Recovers from stuck states by clicking empty ground or navigating back.
+- **Auto-Recovery**: Recovers from stuck states by navigating back, opening the world map, or analyzing the screen to click on empty green ground.
 - **Auto-Energy Replenishment**: Uses energy items when energy is low.
 
 ## Requirements
@@ -23,9 +23,9 @@ The program relies on image recognition to know where to click. You must capture
 
 Required images:
 - `profile_anchor.png` - Player's profile picture used as an anchor to calculate the energy bar location.
-- `empty_ground.png` - A blank area on the map to click and clear any pop-ups.
 - `zoom.png` - The search/radar button to open the search menu.
-- `join.png` - The zombie/rally tab.
+- `join.png` - The active zombie/rally tab.
+- `joininactive.png` - The inactive zombie/rally tab.
 - `find.png` - The search confirmation button.
 - `rally.png` - The rally or attack button that appears on the zombie.
 - `start-rally.png` - The button to confirm troop deployment.
@@ -34,6 +34,8 @@ Required images:
 - `world.png` - The button to switch to the world map.
 - `add-energy.png` - The button to prompt adding energy.
 - `energy20.png` - The button to consume a 20-energy item.
+
+*(Note: The script also uses OpenCV color detection to find and click empty green ground to clear pop-ups, so `empty_ground.png` is no longer used for image recognition.)*
 
 ## How to Run
 
