@@ -112,6 +112,28 @@ def find_and_click(image_path, confidence=0.8, wait_time=1.5):
     except Exception as e:
         print(f"[!] ข้อผิดพลาดอื่นๆ: {e}")
         return False
+# ฟังก์ชันหลักสำหรับหาภาพ
+def find(image_path, confidence=0.8, wait_time=1.5):
+    try:
+        # ค้นหาจุดกึ่งกลางของภาพบนหน้าจอ
+        location = pyautogui.locateCenterOnScreen(image_path, confidence=confidence)
+        
+        if location:
+            print(f"[+] หาเจอ: {image_path}")
+            
+            # หน่วงเวลาให้แอนิเมชันเกมโหลดเสร็จก่อนทำขั้นตอนต่อไป
+            time.sleep(wait_time) 
+            return True
+        else:
+            print(f"[-] หาไม่เจอ: {image_path}")
+            return False
+            
+    except pyautogui.ImageNotFoundException:
+        print(f"[-] หาไม่เจอ: {image_path} (Exception)")
+        return False
+    except Exception as e:
+        print(f"[!] ข้อผิดพลาดอื่นๆ: {e}")
+        return False
 
 # ลำดับการทำงาน (State Machine อย่างง่าย)
 def attack_zombie_routine():
@@ -173,7 +195,7 @@ if __name__ == "__main__":
                 print("add energy")
                 find_and_click("energy20.png")
                 time.sleep(3)
-            elif find_and_click("trucknotavailable.png"):
+            elif find("trucknotavailable.png"):
                 print("รถไม่ว่าง")
                 click_safe_ground()
                 time.sleep(60)
