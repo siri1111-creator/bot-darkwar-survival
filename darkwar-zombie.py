@@ -66,7 +66,7 @@ def click_safe_ground():
         print(f"[!] เกิดข้อผิดพลาด: {e}")
         return False
 
-def find_and_click(image_path, confidence=0.8, wait_time=1.25):
+def find_and_click(image_path, confidence=0.8, wait_time=2):
     try:
         location = pyautogui.locateCenterOnScreen(image_path, confidence=confidence)
         if location:
@@ -106,7 +106,7 @@ def attack_zombie_routine():
         if find_and_click('images/join.png') or find_and_click('images/joininactive.png'):
             
             # 3. กดยืนยันค้นหา 
-            if find_and_click('images/find.png', wait_time=2.5):
+            if find_and_click('images/find.png', wait_time=3):
                 print("[+] พบซอมบี้")
                 
                 # 4. กดโจมตีซอมบี้บนแผนที่
