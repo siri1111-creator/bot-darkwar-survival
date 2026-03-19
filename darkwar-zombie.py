@@ -22,7 +22,7 @@ def setup_game_window(window_title):
         time.sleep(1) 
         
         # ตอนนี้จะสามารถใช้ move_window ได้แล้วครับ
-        app_window.move_window(x=0, y=0, width=945, height=1045)
+        app_window.move_window(x=0, y=0, width=850, height=950)
         print("[+] ล็อคขนาดและตำแหน่งหน้าต่างเกมเรียบร้อย!")
         return True
     except Exception as e:
