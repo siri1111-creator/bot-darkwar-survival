@@ -81,6 +81,19 @@ def find_and_click(image_path, confidence=0.8, wait_time=2):
     except Exception as e:
         return False
 
+def click(image_path, confidence=0.8, wait_time=2):
+    try:
+        location = pyautogui.locateCenterOnScreen(image_path, confidence=confidence)
+        if location:
+            pyautogui.moveTo(location)
+            pyautogui.click()
+            time.sleep(wait_time) 
+            return True
+        else:
+            return False
+    except Exception as e:
+        return False
+
 def find(image_path, confidence=0.8, wait_time=1.25):
     try:
         location = pyautogui.locateCenterOnScreen(image_path, confidence=confidence)
@@ -92,6 +105,12 @@ def find(image_path, confidence=0.8, wait_time=1.25):
             return False
     except Exception as e:
         return False
+
+def add_energy():
+    print("======================== เริ่มลูปเติมพลังงาน ================================")
+    for i in range(20):
+        click('images/spend.png', wait_time=0.2)
+    return True
 
 # ==========================================
 # 3. ลอจิกการทำงานหลัก (ตีซอมบี้)
@@ -135,6 +154,9 @@ def attack_zombie_routine():
     print("=== ลูปโจมตีล้มเหลว หรือ ไม่พบเป้าหมาย ===")
     return False
 
+
+    
+
 # ==========================================
 # 4. ลูปควบคุมบอท
 # ==========================================
@@ -163,8 +185,8 @@ if __name__ == "__main__":
                 success_count += 1  # type: ignore
                 print(f">>> ส่งทัพสำเร็จไปแล้ว {success_count} ครั้ง <<<")
                 print(f">>> เติมพลังงานไปแล้ว {energy_refill_count} ครั้ง <<<")
-                print("พักรอทัพกลับมา 3 นาที (150 วินาที)...")
-                time.sleep(150) 
+                print("พักรอทัพกลับมา 3 นาที (130 วินาที)...")
+                time.sleep(130) 
                 
             else:
                 # วิเคราะห์สาเหตุที่ล้มเหลวและแก้ไขสถานการณ์
@@ -175,7 +197,7 @@ if __name__ == "__main__":
                     print("[+] อยู่ในบ้าน (กดออกแผนที่โลก) ลองใหม่ใน 3 วินาที...")
                     time.sleep(3)
                 elif find_and_click("images/add-energy.png"):
-                    find_and_click("images/energy20.png")
+                    add_energy()
                     energy_refill_count += 1  # type: ignore
                     time.sleep(3)
                 elif find("images/trucknotavailable.png"):
