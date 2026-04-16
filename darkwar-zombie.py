@@ -133,7 +133,7 @@ def attack_zombie_routine():
                     print("[+] กดรวมพล")
                     
                     # 5. เช็คว่าพลังศัตรูตีไหวไหม
-                    if find('images/good_enermy.png'):
+                    if find('images/good_enermy.png') or find('images/warning_enermy.png'):
                         print("[+] ศัตรูพลังน้อยกว่า")
                         
                         # 6. กดปุ่มเตรียมส่งทัพ
